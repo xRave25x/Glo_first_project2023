@@ -8,3 +8,5 @@ let adaptive
 
 alert('Hello Andy!');
 console.log('Hello script!');
+
+console.log("Узнали новые команды GIT");
