@@ -1,10 +1,10 @@
 
-let title = "first_project";
-let screens = "Простые, Сложные, Интерактивные";
-let screenPrice = 100;
-let rollback = 85;
-let fullPrice = 100000;
-let adaptive = true;
+const title = "first_project";
+const screens = "Простые, Сложные, Интерактивные";
+const screenPrice = 100;
+const rollback = 85;
+const fullPrice = 100000;
+const adaptive = true;
 
 
 console.log(typeof title);
