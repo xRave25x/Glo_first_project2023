@@ -9,29 +9,54 @@ const service1 = prompt('Какой дополнительный тип услу
 const servicePrice1 = +prompt('Сколько это будет стоить?');
 const service2 = prompt('Какой дополнительный тип услуги нужен?');
 const servicePrice2 = +prompt('Сколько это будет стоить?');
-const fullPrice = screenPrice + servicePrice1 + servicePrice2;
-const servicePercentPrice = Math.ceil(fullPrice - rollback);
 
-if (fullPrice >= 30000){
-    console.log('Даем скидку 10%');
+const showTypeOf = function(varable) {
+    console.log(varable, typeof varable);
 }
-if (fullPrice > 15000 && fullPrice < 30000){
-    console.log('Даем скидку 5%');
-}
-if (fullPrice <= 15000 && fullPrice >= 0){
-    console.log('Скидка не предусмотрена');
-}
-if (fullPrice < 0){
-    console.log('Что то пошло не так');
-} 
 
+const getRollbackMessage = function (price) {
+    if (price >= 30000){
+        return 'Даем скидку 10%'
+    }
+    if (price > 15000 && fullPrice < 30000){
+        return 'Даем скидку 5%'
+    }
+    if (price <= 15000 && fullPrice >= 0){
+        return 'Скидка не предусмотрена'
+    }
+    if (price < 0){
+        return 'Что то пошло не так'
+    } 
+}
+
+const  getAllServicePrices = function (sp1, sp2) {
+    return sp1 + sp2
+}
+
+function  getFullPrice(sp, asp) {
+    return sp + asp;
+}
+
+const getTitle = function (UpTitle) {
+    if (!UpTitle) return UpTitle;
+    return UpTitle[0].toUpperCase() + UpTitle.slice(1);
+}
+
+const allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+const fullPrice = getAllServicePrices(screenPrice, allServicePrices);
+
+const getServicePercentPrices = function (fp, roll) {
+    return Math.ceil(fp - roll);
+}
+
+const servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
+
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+getTitle(title);
+
+console.log(getRollbackMessage(fullPrice));
 console.log(servicePercentPrice);
-console.log(typeof title);
-console.log(typeof fullPrice);
-console.log(typeof adaptive);
-console.log(screens.length);
-console.log("стоимость верстки экранов " + screenPrice + " долларов" 
-+ " и " + "стоимость разработки сайта " + fullPrice + " долларов" );
 console.log(screens.toLocaleLowerCase().split(","));
-console.log(fullPrice * (rollback / 100));
 
