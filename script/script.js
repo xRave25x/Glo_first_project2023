@@ -9,6 +9,9 @@ const service1 = prompt('Какой дополнительный тип услу
 const servicePrice1 = +prompt('Сколько это будет стоить?');
 const service2 = prompt('Какой дополнительный тип услуги нужен?');
 const servicePrice2 = +prompt('Сколько это будет стоить?');
+let allServicePrices;
+let fullPrice;
+let servicePercentPrice;
 
 const showTypeOf = function(varable) {
     console.log(varable, typeof varable);
@@ -29,27 +32,26 @@ const getRollbackMessage = function (price) {
     } 
 }
 
-const  getAllServicePrices = function (sp1, sp2) {
-    return sp1 + sp2
+const  getAllServicePrices = function (serviceP1, serviceP2) {
+    return serviceP1 + serviceP2
 }
 
-function  getFullPrice(sp, asp) {
-    return sp + asp;
+function  getFullPrice(screenP, allServiceP) {
+    return screenP + allServiceP;
 }
 
-const getTitle = function (UpTitle) {
-    if (!UpTitle) return UpTitle;
-    return UpTitle[0].toUpperCase() + UpTitle.slice(1);
+const getTitle = function (upTitle) {
+    if (!upTitle) return upTitle;
+    return upTitle[0].toUpperCase() + upTitle.slice(1);
 }
 
-const allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
-const fullPrice = getAllServicePrices(screenPrice, allServicePrices);
-
-const getServicePercentPrices = function (fp, roll) {
-    return Math.ceil(fp - roll);
+const getServicePercentPrices = function (fullP, rollB) {
+    return Math.ceil(fullP- rollB);
 }
 
-const servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+fullPrice = getAllServicePrices(screenPrice, allServicePrices);
+servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
 showTypeOf(title);
 showTypeOf(screenPrice);
