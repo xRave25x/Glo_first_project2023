@@ -17,7 +17,7 @@ const appData = {
     
         do {
             appData.screenPrice = prompt('Сколько будет стоить данная работа?');
-        } while (!appData.isNumber(appData.screenPrice))
+        } while (!appData.isNumber(Number(appData.screenPrice)))
     
         appData.adaptive = confirm('Нужен ли адаптив на сайте?');
     },
