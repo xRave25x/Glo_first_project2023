@@ -6,7 +6,6 @@ const percent = document.querySelectorAll('.other-items.percent');
 const number = document.querySelectorAll('.other-items.number');
 const rollbackInput = document.querySelector('.rollback input[type=range]');
 const rollbackSpan = document.querySelector('.rollback span.range-value');
-
 const inputPrice = document.getElementsByClassName('total-input')[0];
 const inputScreen = document.getElementsByClassName('total-input')[1];
 const inputExPrice = document.getElementsByClassName('total-input')[2];
