@@ -14,7 +14,8 @@ let service2;
 
 
 const isNumber = (num) => {
-    return !isNaN(parseFloat(num)) && isFinite(num);
+    let testSpace = /^\S*$/;
+    return !isNaN(parseFloat(num)) && isFinite(num) && testSpace.test(num);
 }
 
 const asking = () => {
