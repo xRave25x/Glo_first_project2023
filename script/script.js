@@ -25,54 +25,54 @@ const appData = {
     servicePercentPrice: 0,
     services: [],
     start: () => {
-        // appData.asking();
+        appData.asking();
         appData.addPrices();
         appData.getFullPrice(appData.screenPrice, appData.allServicePrices);
         appData.getServicePercentPrices(appData.fullPrice, appData.rollback);
         appData.getTitle(appData.title);
         appData.logger();
     },
-    // asking: () => {
+    asking: () => {
 
-    //     do{
-    //         appData.title = prompt('Как называется ваш проект?');
-    //     } while(!isNaN(appData.title));
+        do{
+            appData.title = prompt('Как называется ваш проект?');
+        } while(!isNaN(appData.title));
         
 
-    //     for(let i = 0; i < 2; i++){
-    //         let name;
-    //         let price = 0;
+        for(let i = 0; i < 2; i++){
+            let name;
+            let price = 0;
 
-    //         do {
-    //             name = prompt('Какие типы экранов нужно разработать?')
-    //         } while (!isNaN(name));
+            do {
+                name = prompt('Какие типы экранов нужно разработать?')
+            } while (!isNaN(name));
 
-    //         do {
-    //             price = prompt('Сколько будет стоить данная работа?');
-    //         } while (!appData.isNumber(Number(price)));
+            do {
+                price = prompt('Сколько будет стоить данная работа?');
+            } while (!appData.isNumber(Number(price)));
 
-    //         appData.screens.push({id: i, name: name, price: price})
-    //     }
+            appData.screens.push({id: i, name: name, price: price})
+        }
 
-    //     for(let i = 0; i < 2; i++){
-    //         let name;
-    //         let price = 0;
+        for(let i = 0; i < 2; i++){
+            let name;
+            let price = 0;
 
-    //         do{
-    //             name = prompt('Какой дополнительный тип услуги нужен?');
-    //         }while(!isNaN(name));
+            do{
+                name = prompt('Какой дополнительный тип услуги нужен?');
+            }while(!isNaN(name));
             
 
-    //         do{
-    //         price = prompt('Сколько это будет стоить?');
-    //         } while(!appData.isNumber(price));
+            do{
+            price = prompt('Сколько это будет стоить?');
+            } while(!appData.isNumber(price));
 
-    //         appData.services.push({id: i, name: name, price: price})
+            appData.services.push({id: i, name: name, price: price})
             
-    //     }
+        }
     
-    //     appData.adaptive = confirm('Нужен ли адаптив на сайте?');
-    // },
+        appData.adaptive = confirm('Нужен ли адаптив на сайте?');
+    },
     addPrices: () =>{
         appData.screenPrice = appData.screens.reduce(function (sum, screen) {
             return sum + +screen.price
