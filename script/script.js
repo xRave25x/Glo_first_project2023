@@ -9,7 +9,7 @@ const appData = {
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
-    services: {},
+    services: [],
     start: () => {
         appData.asking();
         appData.addPrices();
@@ -19,7 +19,11 @@ const appData = {
         appData.logger();
     },
     asking: () => {
-        appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
+
+        do{
+            appData.title = prompt('Как называется ваш проект?');
+        } while(!isNaN(appData.title));
+        
 
         for(let i = 0; i < 2; i++){
             let name;
@@ -43,20 +47,25 @@ const appData = {
             do{
                 name = prompt('Какой дополнительный тип услуги нужен?');
             }while(!isNaN(name));
+            
 
             do{
             price = prompt('Сколько это будет стоить?');
             } while(!appData.isNumber(price));
 
-            appData.services[name] = +price;
+            appData.services.push({id: i, name: name, price: price})
+            
         }
     
         appData.adaptive = confirm('Нужен ли адаптив на сайте?');
     },
     addPrices: () =>{
-        for(let screen of appData.screens){
-            appData.screenPrice += +screen.price
-        }//выполнить с reduce
+        appData.screens.reduce((screen) => {
+            return appData.screenPrice += +screen.price
+        })
+        // for(let screen of appData.screens){
+        //     appData.screenPrice += +screen.price
+        // }
 
         for(let key in appData.services) {
             appData.allServicePrices += appData.services[key];
@@ -97,6 +106,7 @@ const appData = {
         //     console.log('метод: ' + key + ' ' + ' Своиство: ' + appData[key]);
         // }
         console.log(appData.screens);
+        console.log(appData.services);
     }
 }
 
