@@ -2,24 +2,65 @@
 
 const appData = {
     title: '',
-    screens: '',
+    screens: [],
     screenPrice: 0,
     rollback: 85,
     adaptive: true,
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
-    service1: '',
-    service2: '',
+    services: {},
+    start: () => {
+        appData.asking();
+        appData.addPrices();
+        appData.getFullPrice(appData.screenPrice, appData.allServicePrices);
+        appData.getServicePercentPrices(appData.fullPrice, appData.rollback);
+        appData.getTitle(appData.title);
+        appData.logger();
+    },
     asking: () => {
         appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
-        appData.screens = prompt('Какие типы экранов нужно разработать?', 'Простые, Сложные, Интерактивные');
-    
-        do {
-            appData.screenPrice = prompt('Сколько будет стоить данная работа?');
-        } while (!appData.isNumber(Number(appData.screenPrice)))
+
+        for(let i = 0; i < 2; i++){
+            let name;
+            let price = 0;
+
+            do {
+                name = prompt('Какие типы экранов нужно разработать?')
+            } while (!isNaN(name));
+
+            do {
+                price = prompt('Сколько будет стоить данная работа?');
+            } while (!appData.isNumber(Number(price)));
+
+            appData.screens.push({id: i, name: name, price: price})
+        }
+
+        for(let i = 0; i < 2; i++){
+            let name;
+            let price = 0;
+
+            do{
+                name = prompt('Какой дополнительный тип услуги нужен?');
+            }while(!isNaN(name));
+
+            do{
+            price = prompt('Сколько это будет стоить?');
+            } while(!appData.isNumber(price));
+
+            appData.services[name] = +price;
+        }
     
         appData.adaptive = confirm('Нужен ли адаптив на сайте?');
+    },
+    addPrices: () =>{
+        for(let screen of appData.screens){
+            appData.screenPrice += +screen.price
+        }//выполнить с reduce
+
+        for(let key in appData.services) {
+            appData.allServicePrices += appData.services[key];
+        }
     },
     isNumber: (num) => {
         return !isNaN(parseFloat(num)) && isFinite(num);
@@ -38,48 +79,24 @@ const appData = {
             return 'Что то пошло не так'
         } 
     },
-    getAllServicePrices: () => {
-        let sum = 0;
-        let price;
-    
-        for(let i = 0; i < 2; i++){
-    
-            if (i === 0) {
-                appData.service1 = prompt('Какой дополнительный тип услуги нужен?');
-            } else if (i === 1) {
-                appData.service2 = prompt('Какой дополнительный тип услуги нужен?');
-            }
-            do{
-            price = prompt('Сколько это будет стоить?');
-            } while(!appData.isNumber(price))
-            sum += parseInt(price); 
-        }
-        return sum;
-    },
     getFullPrice: (screenP, allServiceP) => {
-        return parseInt(screenP) + parseInt(allServiceP);
+        appData.fullPrice = parseInt(screenP) + parseInt(allServiceP);
     },
     getTitle: (upTitle) => {
         if (!upTitle) return upTitle;
-        return upTitle[0].toUpperCase() + upTitle.slice(1);
+        appData.title = upTitle[0].toUpperCase() + upTitle.slice(1);
     },
     getServicePercentPrices: (fullP, rollB) => {
-        return Math.ceil(fullP- rollB);
+        appData.servicePercentPrice = Math.ceil(fullP- rollB);
     },
-    start: () => {
-        appData.asking();
-        appData.allServicePrices = appData.getAllServicePrices();
-        appData.fullPrice = appData.getFullPrice(appData.screenPrice, appData.allServicePrices);
-        appData.servicePercentPrice = appData.getServicePercentPrices(appData.fullPrice, appData.rollback);
-        appData.title = appData.getTitle(appData.title);
-        appData.logger();
-    },
+    
     logger: () => {
         console.log(appData.fullPrice);
         console.log(appData.servicePercentPrice);
-        for(let key in appData){
-            console.log('метод: ' + key + ' ' + ' Своиство: ' + appData[key]);
-        }
+        // for(let key in appData){
+        //     console.log('метод: ' + key + ' ' + ' Своиство: ' + appData[key]);
+        // }
+        console.log(appData.screens);
     }
 }
 
