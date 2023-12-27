@@ -49,8 +49,8 @@ const appData = {
 
             do {
                 price = prompt('Сколько будет стоить данная работа?');
-            } while (!appData.isNumber(Number(price)));
-
+            } while (!appData.isNumber((price)));
+            
             appData.screens.push({id: i, name: name, price: price})
         }
 
@@ -67,7 +67,7 @@ const appData = {
             price = prompt('Сколько это будет стоить?');
             } while(!appData.isNumber(price));
 
-            appData.services.push({id: i, name: name, price: price})
+            appData.services[`${name} ${i}`] = +price; 
             
         }
     
