@@ -116,8 +116,6 @@ const appData = {
         // for(let key in appData){
         //     console.log('метод: ' + key + ' ' + ' Своиство: ' + appData[key]);
         // }
-        console.log(appData.screens);
-        console.log(appData.services);
     }
 }
 
