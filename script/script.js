@@ -1,6 +1,7 @@
 'use strict';
 const title = document.getElementsByTagName('h1')[0];
-const btn = document.getElementsByClassName('handler_btn');
+const start = document.getElementsByClassName('handler_btn')[0];
+const reset = document.getElementsByClassName('handler_btn')[1];
 const plus = document.querySelector('.screen-btn');
 const percent = document.querySelectorAll('.other-items.percent');
 const number = document.querySelectorAll('.other-items.number');
