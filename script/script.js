@@ -66,7 +66,6 @@ const appData = {
         appData.addPrices();
         appData.logger();
         appData.showResult();
-        appData.showRollBack();
 
     },
     addTitle: () => {
@@ -79,14 +78,10 @@ const appData = {
         totalCountRollback.value = appData.servicePercentPrice;
     },
 
-    showRollBack: () => {
-        rollbackSpan.textContent = appData.rollback + '%';
-        rollbackInput.value = appData.rollback;
-    },
-
     changeRollBack: function (event) {
-        rollbackSpan.textContent = appData.rollback + '%';
         appData.rollback = event.target.value;
+        rollbackSpan.textContent = appData.rollback + '%';
+        
     },
 
     addScreens: () => {
