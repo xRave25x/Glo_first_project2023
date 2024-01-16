@@ -72,8 +72,6 @@ const appData = {
         this.addPrices();
         this.logger();
         this.showResult();
-        this.showRollBack();
-
         this.disabledFields();
 
     },
@@ -84,6 +82,7 @@ const appData = {
         this.deleteFields();
         this.rangeClear();
         this.clearData();
+        this.showResult();
 
     },
     isReset: function () {
@@ -100,16 +99,13 @@ const appData = {
         totalCountOther.value = this.servicePricesPercent + this.servicePricesNumber
         fullTotalCount.value = this.fullPrice;
         totalCountRollback.value = this.servicePercentPrice;
-    },
-
-    showRollBack: function () {
-        rollbackSpan.textContent = this.rollback + '%';
-        rollbackInput.value = this.rollback;
+        totalCount.value = this.screenCount;
     },
 
     changeRollBack: function (event) {
-        rollbackSpan.textContent = this.rollback + '%';
         this.rollback = event.target.value;
+        rollbackSpan.textContent = this.rollback + '%';
+        
     },
 
     addScreens: function () {
@@ -142,7 +138,7 @@ const appData = {
             plus.disabled = true;
 
             for(let i = 0; i<checkbox.length; i++){
-                checkbox[i].disabled = true;
+                checkbox[i].checked= true;
             }
             
         });
@@ -160,7 +156,7 @@ const appData = {
             plus.disabled = false;
 
             for(let i = 0; i < checkbox.length; i++){
-                checkbox[i].disabled = false;
+                checkbox[i].checked = false;
             }
             
         });
@@ -189,17 +185,15 @@ const appData = {
     },
     clearData: function () {
         
-    delete this.screens[0];  
-    delete this.screenPrice[0];  
-    delete this.screenCount[0];  
-    delete this.rollback[0]; 
-    delete this.adaptive[0];  
-    delete this.servicePricesPercent[0];  
-    delete this.servicePricesNumber[0];  
-    delete this.fullPrice[0];  
-    delete this.servicePercentPrice[0];  
-    delete this.servicesPercent[0];  
-    delete this.servicesNumber[0]; 
+    this.screens = [];  
+    this.screenPrice = 0;  
+    this.screenCount = 0;  
+    this.rollback = 0; 
+    this.adaptive = 0;  
+    this.servicePricesPercent = 0;  
+    this.servicePricesNumber = 0;  
+    this.fullPrice = 0;  
+    this.servicePercentPrice = 0;
         
     },
     rangeClear: function () {
@@ -251,7 +245,6 @@ const appData = {
             return sum + +item.count;
         }, 0);
 
-        totalCount.value = this.screenCount;
     },
     
     logger: function () {
