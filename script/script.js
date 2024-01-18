@@ -138,7 +138,7 @@ const appData = {
             plus.disabled = true;
 
             for(let i = 0; i<checkbox.length; i++){
-                checkbox[i].checked= true;
+                checkbox[i].disabled= true;
             }
             
         });
@@ -157,6 +157,7 @@ const appData = {
 
             for(let i = 0; i < checkbox.length; i++){
                 checkbox[i].checked = false;
+                checkbox[i].disabled= false;
             }
             
         });
